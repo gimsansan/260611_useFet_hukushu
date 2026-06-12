@@ -1,6 +1,7 @@
 import { Routes, Route, NavLink } from 'react-router-dom';
 import BookList from './BookList';
 import AuthorList from './AuthorList';
+import AuthorListQuery from './AuthorListQuery';
 
 function App() {
   return (
@@ -9,18 +10,24 @@ function App() {
         <NavLink to="/books"
           style={({ isActive }) => ({ fontWeight: isActive ? 'bold' : 'normal' })}
         >
-          Books
+          Books (useFetch)
         </NavLink>
         <NavLink to="/authors"
           style={({ isActive }) => ({ fontWeight: isActive ? 'bold' : 'normal' })}
         >
-          Authors
+          Authors (useFetch)
+        </NavLink>
+        <NavLink to="/authors-query"
+          style={({ isActive }) => ({ fontWeight: isActive ? 'bold' : 'normal' })}
+        >
+          Authors (TanStack)
         </NavLink>
       </nav>
 
       <Routes>
         <Route path="/books" element={<BookList />} />
         <Route path="/authors" element={<AuthorList />} />
+        <Route path="/authors-query" element={<AuthorListQuery />} />
         <Route path="*" element={<BookList />} />
       </Routes>
     </div>
