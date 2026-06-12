@@ -1,0 +1,14 @@
+{
+    "books": [
+      { "id": "1", "title": "데미안",         "authorId": "1", "year": 1919 },
+      { "id": "2", "title": "수레바퀴 아래서", "authorId": "1", "year": 1906 },
+      { "id": "3", "title": "노인과 바다",     "authorId": "2", "year": 1952 },
+      { "id": "4", "title": "1984",           "authorId": "3", "year": 1949 },
+      { "id": "5", "title": "동물농장",        "authorId": "3", "year": 1945 }
+    ],
+    "authors": [
+      { "id": "1", "name": "헤르만 헤세",       "nationality": "독일" },
+      { "id": "2", "name": "어니스트 헤밍웨이", "nationality": "미국" },
+      { "id": "3", "name": "조지 오웰",         "nationality": "영국" }
+    ]
+  }
