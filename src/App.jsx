@@ -10,7 +10,7 @@ export default function App() {
 
   return (
     <div style={{ padding: 24 }}>
-    <h1>책 목록 (6단계 — refetch)</h1>
+  <h1>책 목록 (7단계 — 새로고침 트리거)</h1>
       <BookList />
 
       <h1>저자 목록</h1>

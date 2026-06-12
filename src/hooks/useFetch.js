@@ -4,9 +4,9 @@ export default function useFetch(url) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const cancelledRef = useRef(false);           // ① let → useRef
+  const cancelledRef = useRef(false);
 
-  const doFetch = useCallback(async () => {     // ② effect 밖으로 분리
+  const doFetch = useCallback(async () => {
     cancelledRef.current = false;
     try {
       setLoading(true);
@@ -26,5 +26,12 @@ export default function useFetch(url) {
     return () => { cancelledRef.current = true; };
   }, [doFetch]);
 
-  return { data, loading, error, refetch: doFetch }; // ③ refetch 노출
+  // ✨ 창 포커스 시 자동 refetch
+  useEffect(() => {
+    const onFocus = () => doFetch();
+    window.addEventListener("focus", onFocus);
+    return () => window.removeEventListener("focus", onFocus);
+  }, [doFetch]);
+
+  return { data, loading, error, refetch: doFetch };
 }
