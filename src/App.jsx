@@ -1,26 +1,43 @@
-import { Routes, Route, NavLink } from 'react-router-dom';
-import BookList from './BookList';
-import AuthorList from './AuthorList';
-import AuthorListQuery from './AuthorListQuery';
+import { Routes, Route, NavLink } from "react-router-dom";
+import BookList from "./BookList";
+import AuthorList from "./AuthorList";
+import AuthorListQuery from "./AuthorListQuery";
 
 function App() {
   return (
     <div>
-      <nav style={{ display: 'flex', gap: '1rem', padding: '1rem' }}>
-        <NavLink to="/books"
-          style={({ isActive }) => ({ fontWeight: isActive ? 'bold' : 'normal' })}
+      <nav style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+        <NavLink
+          to="/books"
+          style={({ isActive }) => ({
+            fontWeight: isActive ? "bold" : "normal",
+          })}
         >
           Books (useFetch)
         </NavLink>
-        <NavLink to="/authors"
-          style={({ isActive }) => ({ fontWeight: isActive ? 'bold' : 'normal' })}
+        <NavLink
+          to="/authors"
+          style={({ isActive }) => ({
+            fontWeight: isActive ? "bold" : "normal",
+          })}
         >
           Authors (useFetch)
         </NavLink>
-        <NavLink to="/authors-query"
-          style={({ isActive }) => ({ fontWeight: isActive ? 'bold' : 'normal' })}
+        <NavLink
+          to="/authors-query"
+          style={({ isActive }) => ({
+            fontWeight: isActive ? "bold" : "normal",
+          })}
         >
           Authors (TanStack)
+        </NavLink>
+        <NavLink
+          to="/books-paged"
+          style={({ isActive }) => ({
+            fontWeight: isActive ? "bold" : "normal",
+          })}
+        >
+          Books (Paged)
         </NavLink>
       </nav>
 
@@ -29,6 +46,7 @@ function App() {
         <Route path="/authors" element={<AuthorList />} />
         <Route path="/authors-query" element={<AuthorListQuery />} />
         <Route path="*" element={<BookList />} />
+        <Route path="/books-paged" element={<BookListPaged />} />
       </Routes>
     </div>
   );
