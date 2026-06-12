@@ -33,5 +33,5 @@ export default function useFetch(url) {
     return () => window.removeEventListener("focus", onFocus);
   }, [doFetch]);
 
-  return { data, loading, error, refetch: doFetch };
+    return { data, setData, loading, error, refetch };
 }
