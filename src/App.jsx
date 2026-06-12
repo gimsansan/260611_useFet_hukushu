@@ -1,31 +1,30 @@
-import { useState } from "react";
-import BookList from "./BookList";
-import AuthorList from "./AuthorList";
-import LeakDemo from "./demos/LeakDemo";
-import SafeDemo from "./demos/SafeDemo";
+import { Routes, Route, NavLink } from 'react-router-dom';
+import BookList from './BookList';
+import AuthorList from './AuthorList';
 
-export default function App() {
-  const [showLeak, setShowLeak] = useState(false);
-  const [showSafe, setShowSafe] = useState(false);
-
+function App() {
   return (
-    <div style={{ padding: 24 }}>
-      <h1>8단계 — 공통 FetchLayout</h1>
-      <BookList />
-      <AuthorList />
+    <div>
+      <nav style={{ display: 'flex', gap: '1rem', padding: '1rem' }}>
+        <NavLink to="/books"
+          style={({ isActive }) => ({ fontWeight: isActive ? 'bold' : 'normal' })}
+        >
+          Books
+        </NavLink>
+        <NavLink to="/authors"
+          style={({ isActive }) => ({ fontWeight: isActive ? 'bold' : 'normal' })}
+        >
+          Authors
+        </NavLink>
+      </nav>
 
-      <hr style={{ margin: "24px 0" }} />
-      <h2>실험: LeakDemo</h2>
-      <button onClick={() => setShowLeak(!showLeak)}>
-        {showLeak ? "숨기기" : "보이기"}
-      </button>
-      {showLeak && <LeakDemo />}
-
-      <h2>실험: SafeDemo</h2>
-      <button onClick={() => setShowSafe(!showSafe)}>
-        {showSafe ? "숨기기" : "보이기"}
-      </button>
-      {showSafe && <SafeDemo />}
+      <Routes>
+        <Route path="/books" element={<BookList />} />
+        <Route path="/authors" element={<AuthorList />} />
+        <Route path="*" element={<BookList />} />
+      </Routes>
     </div>
   );
 }
+
+export default App;
