@@ -1,19 +1,26 @@
-import FetchLayout from "./components/FetchLayout";
+import { useFetch } from './hooks/useFetch';
+import FetchLayout from './components/FetchLayout';
+import BookForm from './BookForm';
 
-const BOOKS_URL = "http://localhost:3000/books";
+function BookList() {
+  const { data, loading, error, refetch } = useFetch('http://localhost:3000/books');
 
-export default function BookList() {
   return (
-    <FetchLayout
-      title="책 목록"
-      url={BOOKS_URL}
-      renderList={({ data }) => (
-        <ul>
-          {data.map((book) => (
-            <li key={book.id}>{book.title} ({book.year})</li>
-          ))}
-        </ul>
-      )}
-    />
+    <div>
+      <BookForm onAdded={refetch} />
+      <FetchLayout
+        loading={loading}
+        error={error}
+        data={data}
+        onRefetch={refetch}
+        renderList={(books) => (
+          <ul>
+            {books.map((b) => <li key={b.id}>{b.title}</li>)}
+          </ul>
+        )}
+      />
+    </div>
   );
 }
+
+export default BookList;
