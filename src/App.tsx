@@ -1,8 +1,10 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route, NavLink } from 'react-router-dom';
-import BookList from './BookList';
-import AuthorList from './AuthorList';
-import AuthorListQuery from './AuthorListQuery.tsx';
 import ErrorBoundary from './components/ErrorBoundary';
+
+const BookList = lazy(() => import('./BookList'));
+const AuthorList = lazy(() => import('./AuthorList'));
+const AuthorListQuery = lazy(() => import('./AuthorListQuery'));
 
 function App() {
   return (
@@ -26,12 +28,14 @@ function App() {
       </nav>
 
       <ErrorBoundary>
-        <Routes>
-          <Route path="/books" element={<BookList />} />
-          <Route path="/authors" element={<AuthorList />} />
-          <Route path="/authors-query" element={<AuthorListQuery />} />
-          <Route path="*" element={<BookList />} />
-        </Routes>
+        <Suspense fallback={<p>Loading...</p>}>
+          <Routes>
+            <Route path="/books" element={<BookList />} />
+            <Route path="/authors" element={<AuthorList />} />
+            <Route path="/authors-query" element={<AuthorListQuery />} />
+            <Route path="*" element={<BookList />} />
+          </Routes>
+        </Suspense>
       </ErrorBoundary>
     </div>
   );
