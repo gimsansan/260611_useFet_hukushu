@@ -2,6 +2,7 @@ import { Routes, Route, NavLink } from 'react-router-dom';
 import BookList from './BookList';
 import AuthorList from './AuthorList';
 import AuthorListQuery from './AuthorListQuery';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   return (
@@ -24,12 +25,14 @@ function App() {
         </NavLink>
       </nav>
 
-      <Routes>
-        <Route path="/books" element={<BookList />} />
-        <Route path="/authors" element={<AuthorList />} />
-        <Route path="/authors-query" element={<AuthorListQuery />} />
-        <Route path="*" element={<BookList />} />
-      </Routes>
+      <ErrorBoundary>
+        <Routes>
+          <Route path="/books" element={<BookList />} />
+          <Route path="/authors" element={<AuthorList />} />
+          <Route path="/authors-query" element={<AuthorListQuery />} />
+          <Route path="*" element={<BookList />} />
+        </Routes>
+      </ErrorBoundary>
     </div>
   );
 }
