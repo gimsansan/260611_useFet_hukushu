@@ -1,7 +1,7 @@
 import { Routes, Route, NavLink } from 'react-router-dom';
 import BookList from './BookList';
 import AuthorList from './AuthorList';
-import AuthorListQuery from './AuthorListQuery';
+import AuthorListQuery from './AuthorListQuery.tsx';
 import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
